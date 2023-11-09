@@ -19,7 +19,7 @@ IUSE="
 +xinerama +xrandr minimaid parallel-port profiling
 +X +xinerama +sdl pulseaudio +xrandr +ipo +pie +crash-handler
 +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
-+libtommath +zlib -clubfantastic jack
++libtommath +zlib -clubfantastic jack +wav
 "
 
 BDEPEND="
