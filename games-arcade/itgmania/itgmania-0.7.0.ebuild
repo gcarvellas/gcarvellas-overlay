@@ -12,7 +12,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="+X +64 +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
+IUSE="+X +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
 
 BDEPEND="
 	dev-util/ninja
@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	glew? ( media-libs/glew )
 	jsoncpp? ( dev-libs/jsoncpp )
 	mad? ( media-libs/libmad )
-	png? ( media-libs/libpng:=[64] )
+	png? ( media-libs/libpng )
 	libtomcrypt? ( media-libs/libtomcrypt )
 	libtommath? ( media-libs/libtommath )
 	zlib? ( sys-libs/zlib )
