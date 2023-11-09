@@ -69,15 +69,12 @@ src_unpack() {
 	default
 }
 
-src_compile() {
+src_prepare() {
+	cmake_src_prepare
+}
 
-	default
-
-	CMAKE_GENERATOR="Unix Makefiles" DESTDIR="${D}" cmake -S ${PN} -B build \
-		-DCMAKE_BUILD_TYPE=None \
-		-DCMAKE_C_FLAGS="${CPPFLAGS} ${CFLAGS}" \
-		-DCMAKE_CXX_FLAGS="${CPPFLAGS} ${CXXFLAGS}" \
-		-DCMAKE_INSTALL_PREFIX="${S}" \
+src_configure() {
+	local mycmakeargs=(
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=$(usex ipo) \
 		-DCMAKE_POSITION_INDEPENDENT_CODE=$(usex pie) \
 		-DWITH_SYSTEM_FFMPEG=$(usex ffmpeg) \
@@ -94,15 +91,17 @@ src_compile() {
 		-DWITH_CLUB_FANTASTIC=$(usex clubfantastic) \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_OSX_ARCHITECTURES=x86_64 \
-		-DBUILD_TAG="linux-x64" \
 		-DBUILD_64=ON \
 		-DWITH_FULL_RELEASE=On \
-		-Wno-dev
-	DESTDIR="${D}" cmake --build build
+	)
+}
 
+
+src_compile() {
+	cmake_src_compile
+	docs_compile
 }
 
 src_install() {
-	dobin ${D}/itgmania
-	dodoc ${S}/README.md
+	cmake_src_install
 }
