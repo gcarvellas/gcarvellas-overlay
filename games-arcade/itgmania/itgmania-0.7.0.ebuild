@@ -18,7 +18,7 @@ IUSE="
 +alsa +crash-handler debug +gles2 +gpl +gtk +mp3 +networking
 +xinerama +xrandr minimaid parallel-port profiling
 +X +xinerama +sdl pulseaudio +xrandr +ipo +pie +crash-handler
--ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
++glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
 +libtommath +zlib -clubfantastic jack +wav
 "
 
@@ -28,7 +28,6 @@ BDEPEND="
 	"
 
 STEPMANIA_CI_COMMON_DEPEND="
-	ffmpeg? ( media-video/ffmpeg:=[X,alsa,opengl] )
 	glew? ( media-libs/glew )
 	jsoncpp? ( dev-libs/jsoncpp )
 	mad? ( media-libs/libmad )
@@ -117,7 +116,7 @@ src_configure() {
 		-DWITH_SDL=$(usex sdl)
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=$(usex ipo)
 		-DCMAKE_POSITION_INDEPENDENT_CODE=$(usex pie)
-		-DWITH_FFMPEG=$(usex ffmpeg)
+		-DWITH_FFMPEG=NO
 		-DWITH_SYSTEM_GLEW=$(usex glew)
 		-DWITH_CRASH_HANDLER=$(usex crash-handler)
 		-DWITH_SYSTEM_JPEG=$(usex jpeg)
