@@ -72,7 +72,7 @@ STEPMANIA_CI_CD_DEPEND="
 	dev-lang/nasm
 "
 
-DEPEND="${NINJA_DEPEND}
+DEPEND="
 	${COMMON_DEPEND}
 	${AUR_DEPEND}
 	${ITGMANIA_CI_CD_DEPEND}
@@ -97,8 +97,6 @@ src_prepare() {
 }
 
 src_configure() {
-	[[ -n "${NINJA_DEPEND}" ]] || \
-		ewarn "Unknown value '${NINJA}' for \${NINJA}"
 
 	local mycmakeargs=(
 		-DWITH_ALSA=$(usex alsa)
