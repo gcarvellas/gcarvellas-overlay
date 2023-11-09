@@ -12,14 +12,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="+ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
-
-REQUIRED_USE="
-	media-libs/glu? ( -32 64 )
-	gentoo/libusb-compat? ( -32 64 )
-	media-libs/libvorbis? ( -32 64 )
-	media-libs/mesa? ( -32 64 vaapi )
-"
+IUSE="+64 +ipo +pie +ffmpeg -32 +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
 
 BDEPEND="dev-util/ninja"
 
@@ -35,15 +28,17 @@ COMMON_DEPEND="
 "
 
 DEPEND="${COMMON_DEPEND}
+	media-libs/glu:=[64]
+
 	dev-util/cmake
 	media-video/ffmpeg
-	media-libs/glu
+	media-libs/glu:=[64]
 	x11-libs/gtk+
 	dev-lang/lua
-	dev-libs/libusb-compat
+	dev-libs/libusb-compat[64]
 	media-libs/harfbuzz
-	media-libs/libvorbis
-	media-libs/mesa
+	media-libs/libvorbis[64]
+	media-libs/mesa[64]
 	dev-python/pkgconfig
 	dev-lang/yasm
 	media-plugins/alsa-plugins
@@ -66,13 +61,13 @@ src_compile() {
 
 	DESTDIR="${D}" cmake -G Ninja -S ${PN} -B build \
 		-DCMAKE_BUILD_TYPE=None \
-		-DCMAKE_C_FLAGS="$CPPFLAGS $CFLAGS" \
-		-DCMAKE_CXX_FLAGS="$CPPFLAGS $CXXFLAGS" \
+		-DCMAKE_C_FLAGS="${CPPFLAGS} ${CFLAGS}" \
+		-DCMAKE_CXX_FLAGS="${CPPFLAGS} ${CXXFLAGS}" \
 		-DCMAKE_INSTALL_PREFIX="${S}" \
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=$(usex ipo) \
 		-DCMAKE_POSITION_INDEPENDENT_CODE=$(usex pie) \
 		-DWITH_SYSTEM_FFMPEG=$(usex ffmpeg) \
-		-DWITH_SYSTEM_GLEW=$(usex glex) \
+		-DWITH_SYSTEM_GLEW=$(usex glew) \
 		-DWITH_SYSTEM_JPEG=$(usex jpeg) \
 		-DWITH_SYSTEM_JSONCPP=$(usex jsoncpp) \
 		-DWITH_SYSTEM_MAD=$(usex mad) \
