@@ -135,6 +135,7 @@ src_configure() {
 		-DCMAKE_OSX_ARCHITECTURES=x86_64
 		-DBUILD_64=ON
 		-DWITH_FULL_RELEASE=yes
+		-DCMAKE_MAKE_PROGRAM="make"
 	)
 	cmake_src_configure
 }
