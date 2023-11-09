@@ -73,7 +73,8 @@ STEPMANIA_CI_CD_DEPEND="
 	dev-lang/nasm
 "
 
-DEPEND="${COMMON_DEPEND}
+DEPEND="${NINJA_DEPEND}
+	${COMMON_DEPEND}
 	${AUR_DEPEND}
 	${ITGMANIA_CI_CD_DEPEND}
 	${STEPMANIA_CI_CD_DEPEND}
@@ -85,6 +86,8 @@ DEPEND="${COMMON_DEPEND}
 	x11-libs/libXtst
 "
 
+NINJA="ninja"
+
 src_unpack() {
 	git-r3_src_unpack
 	default
@@ -95,6 +98,9 @@ src_prepare() {
 }
 
 src_configure() {
+	[[ -n "${NINJA_DEPEND}" ]] || \
+		ewarn "Unknown value '${NINJA}' for \${NINJA}"
+
 	local mycmakeargs=(
 		-DWITH_ALSA=$(usex alsa)
 		-DWITH_PULSEAUDIO=$(usex pulseaudio)
@@ -133,6 +139,7 @@ src_configure() {
 		-DBUILD_64=ON
 		-DWITH_FULL_RELEASE=yes
 	)
+	cmake_src_configure
 }
 
 
