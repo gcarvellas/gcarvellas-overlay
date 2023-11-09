@@ -2,11 +2,14 @@ EAPI=8
 
 PLOCALES="en en_US"
 
+FFMPEG_VER="2.1.3" # From CMake/SetupFfmpeg.cmake
+
 inherit git-r3 cmake
 
 DESCRITPION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://github.com/itgmania/itgmania"
 EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
+SRC_URI="ffmpeg? ( https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -18,7 +21,7 @@ IUSE="
 +alsa +crash-handler debug +gles2 +gpl +gtk +mp3 +networking
 +xinerama +xrandr minimaid parallel-port profiling
 +X +xinerama +sdl pulseaudio +xrandr +ipo +pie +crash-handler
-+glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
++ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
 +libtommath +zlib -clubfantastic jack +wav
 "
 
@@ -85,12 +88,15 @@ DEPEND="${NINJA_DEPEND}
 	x11-libs/libXtst
 "
 
-CMAKE_MAKE_PROGRAM="make"
-
 src_unpack() {
-	git-r3_src_unpack
 	default
+	git-r3_src_unpack
+	if use ffmpeg; then
+		mv "${WORKDIR}/ffmpeg-${FFMPEG_VER}" "${S}/extern/ffmpeg-linux-${FFMPEG_VER}" || die
+	fi
 }
+
+NINJA="ninja"
 
 src_prepare() {
 	cmake_src_prepare
@@ -101,6 +107,7 @@ src_configure() {
 		ewarn "Unknown value '${NINJA}' for \${NINJA}"
 
 	local mycmakeargs=(
+		-DCMAKE_INSTALL_PREFIX=/opt
 		-DWITH_ALSA=$(usex alsa)
 		-DWITH_PULSEAUDIO=$(usex pulseaudio)
 		-DWITH_CRASH_HANDLER=$(usex crash-handler)
@@ -116,7 +123,7 @@ src_configure() {
 		-DWITH_SDL=$(usex sdl)
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=$(usex ipo)
 		-DCMAKE_POSITION_INDEPENDENT_CODE=$(usex pie)
-		-DWITH_FFMPEG=NO
+		-DWITH_SYSTEM_FFMPEG=$(usex ffmpeg)
 		-DWITH_SYSTEM_GLEW=$(usex glew)
 		-DWITH_CRASH_HANDLER=$(usex crash-handler)
 		-DWITH_SYSTEM_JPEG=$(usex jpeg)
@@ -148,21 +155,5 @@ src_compile() {
 }
 
 src_install() {
-	make_wrapper itgmania "/usr/$(get_libdir)/${PN}/${PN}" "/usr/$(get_libdir)/${PN}"
-	exeinto "/usr/$(get_libdir)/${PN}"
-	newexe "${PN}-release-symbols" "${PN}" || die "dobin failed"
-	doexe GtkModule.so || die "doexe GtkModule.so failed"
-	insinto "/usr/$(get_libdir)/${PN}"
-	! [ -d Announcers ] && mkdir Announcers
-	doins -r Announcers BackgroundEffects BackgroundTransitions \
-		BGAnimations Characters Courses Data NoteSkins Songs Themes || die "doins failed"
-	if ! use bundled-songs; then
-		keepdir "/usr/$(get_libdir)/${PN}/Songs"
-	fi
-	if ! use bundled-courses; then
-		keepdir "/usr/$(get_libdir)/${PN}/Courses"
-	fi
-	dodoc -r Docs/* || die "dodoc failed"
-	newicon "Themes/default/Graphics/Common window icon.png" "${PN}.png"
-	make_desktop_entry "${PN}" StepMania
+	cmake_src_install
 }
