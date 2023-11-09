@@ -2,14 +2,11 @@ EAPI=8
 
 PLOCALES="en en_US"
 
-FFMPEG_VER="2.1.3" # From CMake/SetupFfmpeg.cmake
-
 inherit git-r3 cmake
 
 DESCRITPION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://github.com/itgmania/itgmania"
 EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
-SRC_URI="ffmpeg? ( https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -31,6 +28,7 @@ BDEPEND="
 	"
 
 STEPMANIA_CI_COMMON_DEPEND="
+	ffmpeg? ( media-video/ffmpeg:=[X,alsa,opengl] )
 	glew? ( media-libs/glew )
 	jsoncpp? ( dev-libs/jsoncpp )
 	mad? ( media-libs/libmad )
@@ -88,15 +86,12 @@ DEPEND="${NINJA_DEPEND}
 	x11-libs/libXtst
 "
 
-src_unpack() {
-	default
-	git-r3_src_unpack
-	if use ffmpeg; then
-		mv "${WORKDIR}/ffmpeg-${FFMPEG_VER}" "${S}/extern/ffmpeg-linux-${FFMPEG_VER}" || die
-	fi
-}
-
 NINJA="ninja"
+
+src_unpack() {
+	git-r3_src_unpack
+	default
+}
 
 src_prepare() {
 	cmake_src_prepare
