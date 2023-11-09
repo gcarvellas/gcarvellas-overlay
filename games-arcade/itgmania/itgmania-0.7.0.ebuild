@@ -2,7 +2,7 @@ EAPI=8
 
 PLOCALES="en en_US"
 
-inherit git-r3 cmake
+inherit git-r3 cmake ninja-utils
 
 DESCRITPION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://github.com/itgmania/itgmania"
