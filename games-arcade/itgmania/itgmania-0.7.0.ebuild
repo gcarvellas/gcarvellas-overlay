@@ -19,8 +19,7 @@ BDEPEND="
 	dev-util/cmake
 	"
 
-# All are from stepmania ci/cd
-COMMON_DEPEND="
+STEPMANIA_CI_COMMON_DEPEND="
 	ffmpeg? ( media-video/ffmpeg:=[X,alsa,opengl] )
 	glew? ( media-libs/glew )
 	jsoncpp? ( dev-libs/jsoncpp )
@@ -32,7 +31,8 @@ COMMON_DEPEND="
 	X? ( x11-libs/libX11 x11-libs/libXrandr x11-libs/libXtst )
 "
 
-# https://aur.archlinux.org/packages/itgmania-bin
+COMMON_DEPEND="${STEPMANIA_CI_COMMON_DEPEND}"
+
 AUR_DEPEND="
 	dev-lang/lua
 	dev-libs/libusb-compat
@@ -40,13 +40,11 @@ AUR_DEPEND="
 	media-libs/libglvnd
 "
 
-# https://github.com/itgmania/itgmania/blob/ce641a7c741eb8168fee006ce59a8c9bf90213b4/.github/workflows/ci.yml
 ITGMANIA_CI_CD_DEPEND="
 	media-libs/glu
 	x11-libs/libXinerama
 "
 
-# https://github.com/stepmania/stepmania/blob/5_1-new/.github/workflows/ci.yml
 STEPMANIA_CI_CD_DEPEND="
 	media-libs/alsa-lib
 	media-libs/mesa
