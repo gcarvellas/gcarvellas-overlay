@@ -117,8 +117,7 @@ src_configure() {
 		-DWITH_SDL=$(usex sdl)
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=$(usex ipo)
 		-DCMAKE_POSITION_INDEPENDENT_CODE=$(usex pie)
-		-DWITH_FFMPEG=$(usex ffmpeg)
-		-DWITH_SYSTEM_FFMPEG=no
+		-DWITH_SYSTEM_FFMPEG=$(usex ffmpeg)
 		-DWITH_SYSTEM_GLEW=$(usex glew)
 		-DWITH_CRASH_HANDLER=$(usex crash-handler)
 		-DWITH_SYSTEM_JPEG=$(usex jpeg)
