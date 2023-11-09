@@ -136,6 +136,7 @@ src_configure() {
 		-DBUILD_64=ON
 		-DWITH_FULL_RELEASE=yes
 		-DCMAKE_MAKE_PROGRAM="make"
+		-DUSE_NINJA=OFF
 		-G "Unix Makefiles"
 	)
 	cmake_src_configure
