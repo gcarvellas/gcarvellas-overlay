@@ -8,7 +8,7 @@ DESCRITPION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://github.com/itgmania/itgmania"
 EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
 
-LICENSE="GPL-3"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
@@ -18,12 +18,13 @@ IUSE="
 +alsa +crash-handler debug +gles2 +gpl +gtk +mp3 +networking
 +xinerama +xrandr minimaid parallel-port profiling
 +X +xinerama +sdl pulseaudio +xrandr +ipo +pie +crash-handler
-+ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
+-ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt
 +libtommath +zlib -clubfantastic jack +wav
 "
 
 BDEPEND="
 	dev-util/cmake
+	dev-util/ninja
 	"
 
 STEPMANIA_CI_COMMON_DEPEND="
@@ -72,7 +73,7 @@ STEPMANIA_CI_CD_DEPEND="
 	dev-lang/nasm
 "
 
-DEPEND="
+DEPEND="${NINJA_DEPEND}
 	${COMMON_DEPEND}
 	${AUR_DEPEND}
 	${ITGMANIA_CI_CD_DEPEND}
@@ -97,6 +98,8 @@ src_prepare() {
 }
 
 src_configure() {
+	[[ -n "${NINJA_DEPEND}" ]] || \
+		ewarn "Unknown value '${NINJA}' for \${NINJA}"
 
 	local mycmakeargs=(
 		-DWITH_ALSA=$(usex alsa)
@@ -135,9 +138,6 @@ src_configure() {
 		-DCMAKE_OSX_ARCHITECTURES=x86_64
 		-DBUILD_64=ON
 		-DWITH_FULL_RELEASE=yes
-		-DCMAKE_MAKE_PROGRAM="make"
-		-DUSE_NINJA=OFF
-		-G "Unix Makefiles"
 	)
 	cmake_src_configure
 }
