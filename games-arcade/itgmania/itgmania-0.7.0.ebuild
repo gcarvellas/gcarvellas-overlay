@@ -108,8 +108,7 @@ src_configure() {
 		-DWITH_MINIMAID=$(usex minimaid)
 		-DWITH_PARALLEL_PORT=$(usex parallel-port)
 		-DWITH_PROFILING=$(usex profiling)
-		-DWITH_SDL=$(usex-sdl)
-
+		-DWITH_SDL=$(usex sdl)
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=$(usex ipo)
 		-DCMAKE_POSITION_INDEPENDENT_CODE=$(usex pie)
 		-DWITH_SYSTEM_FFMPEG=$(usex ffmpeg)
@@ -125,12 +124,10 @@ src_configure() {
 		-DWITH_SYSTEM_TOMCRYPT=$(usex libtomcrypt)
 		-DWITH_SYSTEM_TOMMATH=$(usex libtommath)
 		-DWITH_SYSTEM_ZLIB=$(usex zlib)
-
 		-DWITH_NETWORKING=$(usex networking)
 		-DWITH_XRANDR=$(usex xrandr)
 		-DWITH_JACK=$(usex jack)
 		-DWITH_X11=$(usex X)
-
 		-DWITH_CLUB_FANTASTIC=$(usex clubfantastic)
 		-DCMAKE_BUILD_TYPE=Release
 		-DCMAKE_OSX_ARCHITECTURES=x86_64
