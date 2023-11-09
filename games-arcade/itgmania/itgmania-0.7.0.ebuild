@@ -85,8 +85,6 @@ DEPEND="${COMMON_DEPEND}
 	x11-libs/libXtst
 "
 
-S="${WORKDIR}/${PN}-${SHA}"
-
 src_unpack() {
 	git-r3_src_unpack
 	default
