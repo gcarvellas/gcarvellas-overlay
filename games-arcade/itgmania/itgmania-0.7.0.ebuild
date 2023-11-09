@@ -25,7 +25,7 @@ STEPMANIA_CI_COMMON_DEPEND="
 	jsoncpp? ( dev-libs/jsoncpp )
 	mad? ( media-libs/libmad )
 	png? ( media-libs/libpng )
-	libtomcrypt? ( media-libs/libtomcrypt )
+	libtomcrypt? ( dev-libs/libtomcrypt )
 	libtommath? ( media-libs/libtommath )
 	zlib? ( sys-libs/zlib )
 	X? ( x11-libs/libX11 x11-libs/libXrandr x11-libs/libXtst )
