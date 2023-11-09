@@ -2,7 +2,7 @@ EAPI=8
 
 PLOCALES="en en_US"
 
-inherit git-r3 cmake ninja-utils
+inherit git-r3 cmake
 
 DESCRITPION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://github.com/itgmania/itgmania"
@@ -24,7 +24,6 @@ IUSE="
 
 BDEPEND="
 	dev-util/cmake
-	dev-util/ninja
 	"
 
 STEPMANIA_CI_COMMON_DEPEND="
@@ -86,7 +85,7 @@ DEPEND="${NINJA_DEPEND}
 	x11-libs/libXtst
 "
 
-NINJA="ninja"
+CMAKE_MAKE_PROGRAM="make"
 
 src_unpack() {
 	git-r3_src_unpack
