@@ -12,10 +12,14 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-IUSE="+64 +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
+IUSE="+X +64 +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
 
-BDEPEND="dev-util/ninja"
+BDEPEND="
+	dev-util/ninja
+	dev-util/cmake
+	"
 
+# All are from stepmania ci/cd
 COMMON_DEPEND="
 	ffmpeg? ( media-video/ffmpeg:=[X,alsa,opengl] )
 	glew? ( media-libs/glew )
@@ -25,29 +29,40 @@ COMMON_DEPEND="
 	libtomcrypt? ( media-libs/libtomcrypt )
 	libtommath? ( media-libs/libtommath )
 	zlib? ( sys-libs/zlib )
+	X? ( x11-libs/libX11 x11-libs/libXrandr x11-libs/libXtst )
 "
 
-DEPEND="${COMMON_DEPEND}
-	media-libs/glu:=[64]
-
-	dev-util/cmake
-	media-video/ffmpeg
-	media-libs/glu:=[64]
-	x11-libs/gtk+
+# https://aur.archlinux.org/packages/itgmania-bin
+AUR_DEPEND="
 	dev-lang/lua
-	dev-libs/libusb-compat[64]
+	dev-libs/libusb-compat
 	media-libs/harfbuzz
-	media-libs/libvorbis[64]
-	media-libs/mesa[64]
-	dev-python/pkgconfig
-	dev-lang/yasm
-	media-plugins/alsa-plugins
 	media-libs/libglvnd
+"
+
+# https://github.com/itgmania/itgmania/blob/ce641a7c741eb8168fee006ce59a8c9bf90213b4/.github/workflows/ci.yml
+ITGMANIA_CI_CD_DEPEND="
+	media-libs/glu
+	x11-libs/libXinerama
+"
+
+# https://github.com/stepmania/stepmania/blob/5_1-new/.github/workflows/ci.yml
+STEPMANIA_CI_CD_DEPEND="
+	media-libs/alsa-lib
+	media-libs/mesa
+	x11-libs/gtk+
 	media-sound/jack2
 	media-libs/libpulse
 	virtual/libudev
 	media-libs/libva
 	media-libs/libvorbis
+	dev-lang/nasm
+"
+
+DEPEND="${COMMON_DEPEND}
+	${AUR_DEPEND}
+	${ITGMANIA_CI_CD_DEPEND}
+	${STEPMANIA_CI_CD_DEPEND}
 "
 
 src_unpack() {
