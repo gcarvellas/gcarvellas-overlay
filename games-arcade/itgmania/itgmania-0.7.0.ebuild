@@ -12,6 +12,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
+REQUIRED_USE="abi_x86_64"
+
 IUSE="+X +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
 
 BDEPEND="
