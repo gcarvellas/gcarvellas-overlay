@@ -26,7 +26,7 @@ STEPMANIA_CI_COMMON_DEPEND="
 	mad? ( media-libs/libmad )
 	png? ( media-libs/libpng )
 	libtomcrypt? ( dev-libs/libtomcrypt )
-	libtommath? ( media-libs/libtommath )
+	libtommath? ( dev-libs/libtommath )
 	zlib? ( sys-libs/zlib )
 	X? ( x11-libs/libX11 x11-libs/libXrandr x11-libs/libXtst )
 "
