@@ -8,7 +8,7 @@ DESCRITPION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://github.com/itgmania/itgmania"
 EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
