@@ -94,10 +94,11 @@ src_compile() {
 		-DWITH_CLUB_FANTASTIC=$(usex clubfantastic) \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_OSX_ARCHITECTURES=x86_64 \
-		-DBUILD_TAG="linux-x64"
-		-DBUILD_64=ON
-		-DWITH_FULL_RELEASE=On
-		-Wno-dev
+		-DBUILD_TAG="linux-x64" \
+		-DBUILD_64=ON \
+		-DWITH_FULL_RELEASE=On \
+		-Wno-dev \
+		-G "Unix Makefiles"
 	DESTDIR="${D}" cmake --build build
 
 }
