@@ -17,7 +17,6 @@ REQUIRED_USE="abi_x86_64"
 IUSE="+X +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcrypt +libtommath +zlib -clubfantastic"
 
 BDEPEND="
-	dev-util/ninja
 	dev-util/cmake
 	"
 
@@ -74,7 +73,7 @@ src_compile() {
 
 	default
 
-	DESTDIR="${D}" cmake -G Ninja -S ${PN} -B build \
+	DESTDIR="${D}" cmake -S ${PN} -B build \
 		-DCMAKE_BUILD_TYPE=None \
 		-DCMAKE_C_FLAGS="${CPPFLAGS} ${CFLAGS}" \
 		-DCMAKE_CXX_FLAGS="${CPPFLAGS} ${CXXFLAGS}" \
