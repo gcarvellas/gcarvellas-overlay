@@ -18,6 +18,7 @@ IUSE="+X +ipo +pie +ffmpeg +glew +jpeg +jsoncpp +mad +ogg +pcre +png +libtomcryp
 
 BDEPEND="
 	dev-util/cmake
+	dev-util/ninja
 	"
 
 STEPMANIA_CI_COMMON_DEPEND="
