@@ -15,6 +15,8 @@ BDEPEND="
 	dev-go/go-md2man
 "
 
+S="${WORKDIR}/${PN}-v${PV}"
+
 pkg_postinst() {
 	elog "You will need to add your user to the 'video' group"
 }
