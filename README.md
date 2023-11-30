@@ -2,8 +2,10 @@
 George's Gentoo Overlay
 
 Todo List:
-- [ ] Brillo
+- [x] Brillo
 - [ ] Itgmania
+- [ ] Anki 23.10.1
+- [ ] r2modman
 
 To use my overlay 
 `# emerge eselect-repository`
