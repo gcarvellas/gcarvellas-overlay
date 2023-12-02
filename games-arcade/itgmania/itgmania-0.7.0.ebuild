@@ -60,7 +60,6 @@ src_configure() {
 		-DCMAKE_BUILD_TYPE=Release
 		-DWITH_FULL_RELEASE=On
 		-DWITH_LTO=$(usex lto On Off)
-		-DWITH_FFMPEG=$(usex ffmpeg On Off)
 	)
 	cmake_src_configure
 }
