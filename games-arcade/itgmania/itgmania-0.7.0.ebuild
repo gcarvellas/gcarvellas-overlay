@@ -10,7 +10,7 @@ HOMEPAGE="https://www.itgmania.com/"
 
 EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
 EGIT_SUBMODULES=(
-	'IXWebSocket' 'lib*' 'mbedtls' 'ogg' 'vorbis' 'zlib' 'ffmpeg::commit=effadce6c756247ea8bae32dc13bb3e6f464f0eb' 	# https://github.com/itgmania/itgmania/issues/136
+	'*' 'ffmpeg::commit=effadce6c756247ea8bae32dc13bb3e6f464f0eb' 	# https://github.com/itgmania/itgmania/issues/136
 )
 EGIT_COMMIT="28b7659a0999fea52b6fc475673a52157d903454" # v0.7.0 release
 
