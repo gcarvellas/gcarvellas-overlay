@@ -36,7 +36,7 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 BDEPEND="
-	=sys-devel/binutils-2.40:0" #https://github.com/itgmania/itgmania/issues/136
+	<=sys-devel/binutils-2.40-r9" #https://github.com/itgmania/itgmania/issues/136
 
 src_configure() {
 	local mycmakeargs=(
