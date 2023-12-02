@@ -2,6 +2,8 @@ EAPI=8
 
 inherit cmake
 
+CMAKE_MAKEFILE_GENERATOR="emake"
+
 DESCRIPTION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://www.itgmania.com/"
 SRC_URI="https://github.com/itgmania/itgmania/archive/refs/tags/v${PV}.tar.gz"
@@ -26,9 +28,9 @@ RDEPEND="
 	media-libs/libglvnd
 	"
 DEPEND="${RDEPEND}"
-BDEPEND= "
-	dev-util/cmake
-	"
+#BDEPEND= "
+#	dev-util/cmake
+#	"
 
 src_configure() {
 	local mycmakeargs=(
