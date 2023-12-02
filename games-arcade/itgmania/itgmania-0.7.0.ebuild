@@ -12,8 +12,6 @@ EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
 
 EGIT_COMMIT="28b7659a0999fea52b6fc475673a52157d903454" # v0.7.0 release
 
-#EGIT_OVERRIDE_COMMIT_FFMPEG='effadce6c756247ea8bae32dc13bb3e6f464f0eb' # https://github.com/itgmania/itgmania/issues/136
-
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -46,7 +44,7 @@ src_configure() {
 		-DWITH_GTK3=$(usex gtk On Off)
 		-DWITH_PULSEAUDIO=$(usex pulseaudio On Off)
 		-DWITH_ALSA=$(usex alsa On Off)
-		-DWITH_JACK=$(usex jack On OFf)
+		-DWITH_JACK=$(usex jack On Off)
 		-DWITH_OSS=$(usex oss On Off)
 		-DWITH_NASM=$(usex nasm On Off)
 		-DWITH_YASM=$(usex yasm On Off)
