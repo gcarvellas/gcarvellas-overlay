@@ -10,14 +10,14 @@ HOMEPAGE="https://www.itgmania.com/"
 
 EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
 EGIT_SUBMODULES=(
-	'*'
+	'IXWebSocket' 'lib*' 'mbedtls' 'ogg' 'vorbis' 'zlib' 'ffmpeg::commit=effadce6c756247ea8bae32dc13bb3e6f464f0eb' 	# https://github.com/itgmania/itgmania/issues/136
 )
 EGIT_COMMIT="28b7659a0999fea52b6fc475673a52157d903454" # v0.7.0 release
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="gtk X +crash-handler pulseaudio alsa jack oss +nasm yasm -club-fantastic lto +gles2 udev"
+IUSE="gtk X +crash-handler pulseaudio alsa jack oss +nasm yasm -club-fantastic lto udev"
 
 RDEPEND="
 	gtk? ( >=x11-libs/gtk+-3 )
@@ -28,30 +28,14 @@ RDEPEND="
 	oss? ( media-libs/alsa-oss )
 	nasm? ( dev-lang/nasm )
 	yasm? ( dev-lang/yasm )
-	gles2? ( media-libs/glew )
 	udev? ( virtual/libudev )
 
 	media-libs/libglvnd
 	dev-libs/libusb
-	media-libs/libmad
 	media-libs/glu
 	media-libs/mesa
 	"
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-	git-r3_src_prepare
-
-
-	# https://github.com/itgmania/itgmania/issues/136
-	cd extern/ffmpeg
-	git fetch
-	git checkout effadce6c756247ea8bae32dc13bb3e6f464f0eb
-	cd ../..
-
-	cmake_src_prepare
-	default
-}
 
 src_configure() {
 	local mycmakeargs=(
