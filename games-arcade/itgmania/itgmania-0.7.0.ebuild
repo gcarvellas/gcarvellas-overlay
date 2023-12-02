@@ -46,7 +46,7 @@ src_prepare() {
 	# https://github.com/itgmania/itgmania/issues/136
 	cd extern/ffmpeg
 	git fetch
-	git checkout 536cd25b99c00d4fa8232ea830a45dba4e0805f9
+	git checkout effadce6c756247ea8bae32dc13bb3e6f464f0eb
 	cd ../..
 
 	cmake_src_prepare
