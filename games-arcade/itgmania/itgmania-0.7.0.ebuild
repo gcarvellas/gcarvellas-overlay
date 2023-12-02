@@ -17,7 +17,7 @@ EGIT_COMMIT="28b7659a0999fea52b6fc475673a52157d903454" # v0.7.0 release
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="gtk X +crash-handler pulseaudio alsa jack oss +nasm yasm -club-fantastic lto +gles2 +ffmpeg"
+IUSE="gtk X +crash-handler pulseaudio alsa jack oss +nasm yasm -club-fantastic lto +gles2 udev"
 
 RDEPEND="
 	gtk? ( >=x11-libs/gtk+-3 )
@@ -29,8 +29,13 @@ RDEPEND="
 	nasm? ( dev-lang/nasm )
 	yasm? ( dev-lang/yasm )
 	gles2? ( media-libs/glew )
-	ffmpeg? ( media-video/ffmpeg )
+	udev? ( virtual/libudev )
+
 	media-libs/libglvnd
+	dev-libs/libusb
+	media-libs/libmad
+	media-libs/glu
+	media-libs/mesa
 	"
 DEPEND="${RDEPEND}"
 
