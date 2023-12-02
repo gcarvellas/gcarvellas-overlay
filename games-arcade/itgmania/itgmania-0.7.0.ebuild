@@ -47,6 +47,8 @@ src_prepare() {
 	cd extern/ffmpeg
 	git fetch
 	git checkout 536cd25b99c00d4fa8232ea830a45dba4e0805f9
+
+	default
 }
 
 src_configure() {
