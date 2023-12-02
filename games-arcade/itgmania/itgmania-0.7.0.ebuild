@@ -1,14 +1,18 @@
 EAPI=8
 
-inherit cmake
+inherit cmake git-r3
 
 # Cannot use ninja generator when building the bundled ffmpeg library
 CMAKE_MAKEFILE_GENERATOR="emake"
 
 DESCRIPTION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://www.itgmania.com/"
-EGIT_SUBMODULES=( '*' )
-SRC_URI="https://github.com/itgmania/itgmania/archive/refs/tags/v${PV}.tar.gz"
+
+EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
+EGIT_SUBMODULES=(
+	'*'
+)
+EGIT_COMMIT="28b7659a0999fea52b6fc475673a52157d903454" # v0.7.0 release
 
 LICENSE="MIT"
 SLOT="0"
