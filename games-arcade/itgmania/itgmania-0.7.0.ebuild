@@ -12,8 +12,6 @@ EGIT_REPO_URI="https://github.com/itgmania/itgmania.git"
 EGIT_SUBMODULES=('*')
 EGIT_COMMIT="28b7659a0999fea52b6fc475673a52157d903454" # v0.7.0 release
 
-EGIT_OVERRIDE_COMMIT_FFMPEG='effadce6c756247ea8bae32dc13bb3e6f464f0eb' # https://github.com/itgmania/itgmania/issues/136
-
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -36,6 +34,9 @@ RDEPEND="
 	media-libs/mesa
 	"
 DEPEND="${RDEPEND}"
+
+BDEPEND="
+	=sys-devel/binutils-2.40:0" #https://github.com/itgmania/itgmania/issues/136
 
 src_configure() {
 	local mycmakeargs=(
