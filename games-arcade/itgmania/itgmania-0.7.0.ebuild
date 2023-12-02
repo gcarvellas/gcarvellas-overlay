@@ -4,7 +4,7 @@ inherit cmake
 
 DESCRIPTION="Fork of StepMania 5.1, improved for the post-ITG community"
 HOMEPAGE="https://www.itgmania.com/"
-SRC_URI="https://github.com/itgmania/itgmania/releases/download/v0.7.0/ITGmania-0.7.0-Linux.tar.gz"
+SRC_URI="https://github.com/itgmania/itgmania/archive/refs/tags/v${PV}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -29,27 +29,28 @@ DEPEND="${RDEPEND}"
 BDEPEND= "
 	dev-util/cmake
 	"
+
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_X11=$(usex X)
-		-DWITH_XRANDR=$(usex X)
-		-DWITH_LIBXTST=$(usex X)
-		-DWITH_CRASH_HANDLER=$(usex crash-handler)
-		-DWITH_GTK3=$(usex gtk)
-		-DWITH_PULSEAUDIO=$(usex pulseaudio)
-		-DWITH_ALSA=$(usex alsa)
-		-DWITH_JACK=$(usex jack)
-		-DWITH_OSS=$(usex oss)
-		-DWITH_NASM=$(usex nasm)
-		-DWITH_YASM=$(usex yasm)
-		-DWITH_CLUB_FANTASTIC=$(usex club-fantastic)
+		-DWITH_X11=$(usex X ON OFF)
+		-DWITH_XRANDR=$(usex X ON OFF)
+		-DWITH_LIBXTST=$(usex X ON OFF)
+		-DWITH_CRASH_HANDLER=$(usex crash-handler ON OFF)
+		-DWITH_GTK3=$(usex gtk ON OFF)
+		-DWITH_PULSEAUDIO=$(usex pulseaudio ON OFF)
+		-DWITH_ALSA=$(usex alsa ON OFF)
+		-DWITH_JACK=$(usex jack ON OFF)
+		-DWITH_OSS=$(usex oss ON OFF)
+		-DWITH_NASM=$(usex nasm ON OFF)
+		-DWITH_YASM=$(usex yasm ON OFF)
+		-DWITH_CLUB_FANTASTIC=$(usex club-fantastic ON OFF)
 		-DCMAKE_BUILD_TYPE=Release
 		-DWITH_FULL_RELEASE=On
-		-DWITH_LTO=$(usex lto)
-		-DWITH_FFMPEG=$(usex ffmpeg)
-		-DWITH_SYSTEM_FFMPEG=$(usex system-ffmpeg)
-		-DWITH_MP3=$(usex mp3)
-		-DWITH_WAV=$(usex wav)
+		-DWITH_LTO=$(usex lto ON OFF)
+		-DWITH_FFMPEG=$(usex ffmpeg ON OFF)
+		-DWITH_SYSTEM_FFMPEG=$(usex system-ffmpeg ON OFF)
+		-DWITH_MP3=$(usex mp3 ON OFF)
+		-DWITH_WAV=$(usex wav ON OFF)
 	)
 	cmake_src_configure
 }
