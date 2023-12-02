@@ -48,6 +48,7 @@ src_prepare() {
 	git fetch
 	git checkout 536cd25b99c00d4fa8232ea830a45dba4e0805f9
 
+	cmake_src_prepare
 	default
 }
 
