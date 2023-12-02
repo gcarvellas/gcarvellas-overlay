@@ -40,6 +40,8 @@ BDEPEND="
 
 src_configure() {
 	local mycmakeargs=(
+	    -DCMAKE_MAKE_PROGRAM=$(tc-getMAKE)
+        -DCMAKE_AR=$(tc-getAR)
 		-DWITH_X11=$(usex X On Off)
 		-DWITH_XRANDR=$(usex X On Off)
 		-DWITH_LIBXTST=$(usex X On Off)
