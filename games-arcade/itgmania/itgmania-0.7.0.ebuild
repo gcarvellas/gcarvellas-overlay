@@ -39,9 +39,15 @@ RDEPEND="
 	"
 DEPEND="${RDEPEND}"
 
-#BDEPEND= "
-#	dev-util/cmake
-#	"
+src_prepare() {
+	git-r3_src_prepare
+
+	# https://github.com/itgmania/itgmania/issues/136
+	git submodule update --init --recursive extern/ffmpeg
+	pushd extern/ffmpeg
+	git checkout 536cd25b99c00d4fa8232ea830a45dba4e0805f9
+	popd
+}
 
 src_configure() {
 	local mycmakeargs=(
